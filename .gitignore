@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.env
+*.db
+*.db-journal
+src/routes/
+prisma/migrations/dev.db*
+uploads/
+
+./.agents
