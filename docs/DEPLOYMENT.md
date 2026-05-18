@@ -9,8 +9,9 @@
 3. SSH 키로 홈서버에 접속한다.
 4. 서버 배포 경로에 소스 파일을 동기화한다.
 5. GitHub Secrets 값으로 서버의 `.env` 파일을 생성한다.
-6. 홈서버에서 `docker compose up -d --build --remove-orphans`를 실행한다.
-7. `app`, `nginx` 컨테이너가 모두 `healthy`가 될 때까지 대기한다.
+6. 홈서버에서 기존 compose 서비스를 `docker compose down --remove-orphans`로 종료한다.
+7. `docker compose up -d --build --remove-orphans`로 다시 실행한다.
+8. `app`, `nginx` 컨테이너가 모두 `healthy`가 될 때까지 대기한다.
 
 ## Required GitHub Secrets
 

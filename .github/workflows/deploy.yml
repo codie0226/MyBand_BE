@@ -138,6 +138,7 @@ jobs:
 
           cd "$DEPLOY_PATH"
           docker compose pull nginx
+          docker compose down --remove-orphans
           docker compose up -d --build --remove-orphans
 
           deadline=$((SECONDS + 240))
