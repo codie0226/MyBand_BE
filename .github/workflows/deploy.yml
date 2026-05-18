@@ -99,6 +99,7 @@ jobs:
           SSH_PORT="${HOME_SERVER_PORT:-22}"
           SSH_TARGET="${HOME_SERVER_USER}@${HOME_SERVER_HOST}"
           SSH_OPTS="-i ~/.ssh/home_server_key -p ${SSH_PORT}"
+          SCP_OPTS="-i ~/.ssh/home_server_key -P ${SSH_PORT}"
 
           ssh $SSH_OPTS "$SSH_TARGET" "mkdir -p '$HOME_SERVER_PATH'"
           rsync -az \
@@ -113,7 +114,7 @@ jobs:
             --exclude 'prisma/*.db-journal' \
             --exclude 'config/ssl' \
             ./ "$SSH_TARGET:$HOME_SERVER_PATH/"
-          scp $SSH_OPTS .deploy.env "$SSH_TARGET:$HOME_SERVER_PATH/.env"
+          scp $SCP_OPTS .deploy.env "$SSH_TARGET:$HOME_SERVER_PATH/.env"
 
       - name: Deploy with Docker Compose
         env:
